@@ -1,5 +1,10 @@
-# docker-logger [![Actions Status](https://wdp9fww0r9.execute-api.us-west-2.amazonaws.com/production/badge/umputun/docker-logger)](https://wdp9fww0r9.execute-api.us-west-2.amazonaws.com/production/results/umputun/docker-logger) [![Go Report Card](https://goreportcard.com/badge/github.com/umputun/docker-logger)](https://goreportcard.com/report/github.com/umputun/docker-logger) [![Docker Automated build](https://img.shields.io/docker/automated/jrottenberg/ffmpeg.svg)](https://hub.docker.com/r/umputun/docker-logger/)
+# docker-logger regex inclusions fork
 
+This is a possibly temporary repo to add regex capability to inclusions and exclusions.
+
+Original README below:
+
+---------------------------------
 
 **docker-logger** is a small application collecting logs from other containers on the host that started without
 the `-t` option and configured with a logging driver that works with docker logs (journald and json-file).

@@ -141,9 +141,9 @@ func (e *EventNotif) group(image string) string {
 
 func (e *EventNotif) isAllowed(containerName string) bool {
 	if len(e.includes) > 0 {
-		return contains(containerName, e.includes)
+		return regexpContains(containerName, e.includes)
 	}
-	if contains(containerName, e.excludes) {
+	if regexpContains(containerName, e.excludes) {
 		return false
 	}
 
@@ -153,6 +153,16 @@ func (e *EventNotif) isAllowed(containerName string) bool {
 func contains(e string, s []string) bool {
 	for _, a := range s {
 		if a == e {
+			return true
+		}
+	}
+	return false
+}
+
+func regexpContains(e string, s []string) bool {
+	for _, a := range s {
+		matched, _ := regexp.MatchString(a, e)
+		if(matched) {
 			return true
 		}
 	}

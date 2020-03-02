@@ -91,21 +91,20 @@ func TestNewEventNotifWithNils(t *testing.T) {
 
 func TestIsAllowedExclude(t *testing.T) {
 	client := &mockDockerClient{}
-	events, err := NewEventNotif(client, []string{"tst_exclude"}, nil)
+	events, err := NewEventNotif(client, []string{"exclude[0-9]+"}, nil)
 	require.NoError(t, err)
 
-	assert.True(t, events.isAllowed("name1"))
-	assert.False(t, events.isAllowed("tst_exclude"))
+	assert.True(t, events.isAllowed("tst_exclude"))
+	assert.False(t, events.isAllowed("tst_exclude123"))
 }
 
 func TestIsAllowedInclude(t *testing.T) {
 	client := &mockDockerClient{}
-	events, err := NewEventNotif(client, nil, []string{"tst_include"})
+	events, err := NewEventNotif(client, nil, []string{"include[0-9]+"})
 	require.NoError(t, err)
 
-	assert.True(t, events.isAllowed("tst_include"))
-	assert.False(t, events.isAllowed("name1"))
-	assert.False(t, events.isAllowed("tst_exclude"))
+	assert.True(t, events.isAllowed("tst_include123"))
+	assert.False(t, events.isAllowed("tst_include"))
 }
 
 func TestGroup(t *testing.T) {
